@@ -16,7 +16,7 @@ namespace LibrarySearch
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new BookDetail());
+            Application.Run(new BookSearchForm());
         }
     }
 }

@@ -15,10 +15,11 @@ namespace LibrarySearch
 {
     public partial class BookDetail : Form
     {
-        private string ISBN= "9787020038985";
-        public BookDetail()
+        private string ISBN= "";
+        public BookDetail(string ISBN)
         {
             InitializeComponent();
+            this.ISBN = ISBN;
         }
 
         //窗体加载时，以url形式加载图片
@@ -143,8 +144,16 @@ namespace LibrarySearch
             HttpWebRequest request = (HttpWebRequest)WebRequest.Create(url);
             using (WebResponse response = request.GetResponse())
             {
-                Image img = Image.FromStream(response.GetResponseStream());
-                pic_book.Image = img;
+                try
+                {
+                    Image img = Image.FromStream(response.GetResponseStream());
+                    pic_book.Image = img;
+                }
+               catch(Exception e )
+                {
+                    e.ToString();
+                    pic_book.Image = null;
+                }
             }
         }   
     }
