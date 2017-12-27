@@ -1,0 +1,11 @@
+D:\Users\Admin\Documents\GitHub\LibrarySearch\LibrarySearch\bin\Debug\LibrarySearch.exe.config
+D:\Users\Admin\Documents\GitHub\LibrarySearch\LibrarySearch\bin\Debug\LibrarySearch.exe
+D:\Users\Admin\Documents\GitHub\LibrarySearch\LibrarySearch\bin\Debug\LibrarySearch.pdb
+D:\Users\Admin\Documents\GitHub\LibrarySearch\LibrarySearch\obj\Debug\LibrarySearch.Form1.resources
+D:\Users\Admin\Documents\GitHub\LibrarySearch\LibrarySearch\obj\Debug\LibrarySearch.Properties.Resources.resources
+D:\Users\Admin\Documents\GitHub\LibrarySearch\LibrarySearch\obj\Debug\LibrarySearch.csproj.GenerateResource.Cache
+D:\Users\Admin\Documents\GitHub\LibrarySearch\LibrarySearch\obj\Debug\LibrarySearch.csproj.CoreCompileInputs.cache
+D:\Users\Admin\Documents\GitHub\LibrarySearch\LibrarySearch\obj\Debug\LibrarySearch.exe
+D:\Users\Admin\Documents\GitHub\LibrarySearch\LibrarySearch\obj\Debug\LibrarySearch.pdb
+D:\Users\Admin\Documents\GitHub\LibrarySearch\LibrarySearch\bin\Debug\CSkin.dll
+D:\Users\Admin\Documents\GitHub\LibrarySearch\LibrarySearch\obj\Debug\LibrarySearch.csprojResolveAssemblyReference.cache
