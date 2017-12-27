@@ -139,6 +139,7 @@
             this.Font = new System.Drawing.Font("新宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.Name = "BookSearchForm";
             this.Text = "图书查询";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.BookSearchForm_FormClosing);
             this.Load += new System.EventHandler(this.Form1_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);

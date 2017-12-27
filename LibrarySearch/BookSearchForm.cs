@@ -13,15 +13,22 @@ namespace LibrarySearch
 {
     public partial class BookSearchForm : Form
     {
+        SignInForm signInform;
+
         string userInput = null;
         List<string> ISBNList= new List<string>();
-        int rowCount = 0;
         int  userSelect;
         public BookSearchForm()
         {
             InitializeComponent();
         }
 
+
+        public BookSearchForm(SignInForm signInform)
+        {
+            InitializeComponent();
+            this.signInform = signInform;
+        }
         private void button1_Click(object sender, EventArgs e)
         {
             SearchBook();
@@ -78,7 +85,7 @@ namespace LibrarySearch
             if (e.ColumnIndex == 0)
             {
                 string ISBN = ISBNList[e.RowIndex];
-                BookDetail bookDetail = new BookDetail(ISBN);
+                BookDetail bookDetail = new BookDetail(ISBN,this);
                 bookDetail.Show();
             }
             else
@@ -91,6 +98,11 @@ namespace LibrarySearch
         private void dataGridView1_MouseEnter(object sender, EventArgs e)
         {
             this.Cursor = Cursors.Hand;
+        }
+
+        private void BookSearchForm_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            this.signInform.Show();
         }
     }
 }

@@ -11,7 +11,6 @@ E:\数据库\数据库综合实验\LibrarySearchSolution\LibrarySearch\obj\Debug
 E:\code\C#Code\newliBrary\LibrarySearch\bin\Debug\LibrarySearch.exe.config
 E:\code\C#Code\newliBrary\LibrarySearch\bin\Debug\LibrarySearch.exe
 E:\code\C#Code\newliBrary\LibrarySearch\bin\Debug\LibrarySearch.pdb
-E:\code\C#Code\newliBrary\LibrarySearch\obj\Debug\LibrarySearch.csprojResolveAssemblyReference.cache
 E:\code\C#Code\newliBrary\LibrarySearch\obj\Debug\LibrarySearch.BookDetail.resources
 E:\code\C#Code\newliBrary\LibrarySearch\obj\Debug\LibrarySearch.Properties.Resources.resources
 E:\code\C#Code\newliBrary\LibrarySearch\obj\Debug\LibrarySearch.csproj.GenerateResource.Cache
@@ -19,3 +18,5 @@ E:\code\C#Code\newliBrary\LibrarySearch\obj\Debug\LibrarySearch.csproj.CoreCompi
 E:\code\C#Code\newliBrary\LibrarySearch\obj\Debug\LibrarySearch.exe
 E:\code\C#Code\newliBrary\LibrarySearch\obj\Debug\LibrarySearch.pdb
 E:\code\C#Code\newliBrary\LibrarySearch\obj\Debug\LibrarySearch.BookSearchForm.resources
+E:\code\C#Code\newliBrary\LibrarySearch\obj\Debug\LibrarySearch.SignInForm.resources
+E:\code\C#Code\newliBrary\LibrarySearch\obj\Debug\LibrarySearch.SignUp.resources

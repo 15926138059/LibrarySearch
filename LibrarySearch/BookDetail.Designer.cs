@@ -31,6 +31,8 @@
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.pic_book = new CCWin.SkinControl.SkinPictureBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.lab_count = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
             this.lab_cnType = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
             this.lab_douban = new System.Windows.Forms.Label();
@@ -43,8 +45,6 @@
             this.label1 = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
             this.dG_book = new System.Windows.Forms.DataGridView();
-            this.label3 = new System.Windows.Forms.Label();
-            this.lab_count = new System.Windows.Forms.Label();
             this.bookID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.bookLoaction = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.bookFlag = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -108,6 +108,25 @@
             this.groupBox1.Size = new System.Drawing.Size(516, 239);
             this.groupBox1.TabIndex = 1;
             this.groupBox1.TabStop = false;
+            // 
+            // lab_count
+            // 
+            this.lab_count.AutoSize = true;
+            this.lab_count.Location = new System.Drawing.Point(147, 151);
+            this.lab_count.Name = "lab_count";
+            this.lab_count.Size = new System.Drawing.Size(41, 12);
+            this.lab_count.TabIndex = 13;
+            this.lab_count.Text = "馆藏书";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("宋体", 15F);
+            this.label3.Location = new System.Drawing.Point(21, 143);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(69, 20);
+            this.label3.TabIndex = 12;
+            this.label3.Text = "馆藏书";
             // 
             // lab_cnType
             // 
@@ -231,25 +250,6 @@
             this.dG_book.Size = new System.Drawing.Size(778, 231);
             this.dG_book.TabIndex = 0;
             // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("宋体", 15F);
-            this.label3.Location = new System.Drawing.Point(21, 143);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(69, 20);
-            this.label3.TabIndex = 12;
-            this.label3.Text = "馆藏书";
-            // 
-            // lab_count
-            // 
-            this.lab_count.AutoSize = true;
-            this.lab_count.Location = new System.Drawing.Point(147, 151);
-            this.lab_count.Name = "lab_count";
-            this.lab_count.Size = new System.Drawing.Size(41, 12);
-            this.lab_count.TabIndex = 13;
-            this.lab_count.Text = "馆藏书";
-            // 
             // bookID
             // 
             this.bookID.HeaderText = "图书类";
@@ -282,6 +282,7 @@
             this.Controls.Add(this.tableLayoutPanel1);
             this.Name = "BookDetail";
             this.Text = "BookDetail";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.BookDetail_FormClosing);
             this.Load += new System.EventHandler(this.BookDetail_Load);
             this.tableLayoutPanel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pic_book)).EndInit();

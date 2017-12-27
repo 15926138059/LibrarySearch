@@ -15,11 +15,19 @@ namespace LibrarySearch
 {
     public partial class BookDetail : Form
     {
+        private BookSearchForm bookSearchForm;
         private string ISBN= "";
         public BookDetail(string ISBN)
         {
             InitializeComponent();
             this.ISBN = ISBN;
+        }
+
+        public BookDetail(string ISBN,BookSearchForm bookSearchForm)
+        {
+            InitializeComponent();
+            this.ISBN = ISBN;
+            this.bookSearchForm = bookSearchForm;
         }
 
         //窗体加载时，以url形式加载图片
@@ -155,6 +163,12 @@ namespace LibrarySearch
                     pic_book.Image = null;
                 }
             }
-        }   
+        }
+
+        private void BookDetail_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            this.bookSearchForm.Show();
+            
+        }
     }
 }
