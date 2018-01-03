@@ -91,7 +91,7 @@
             this.author,
             this.pressdate,
             this.press});
-            this.dataGridView1.Location = new System.Drawing.Point(41, 73);
+            this.dataGridView1.Location = new System.Drawing.Point(41, 71);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.ReadOnly = true;
             this.dataGridView1.RowTemplate.Height = 23;
@@ -129,6 +129,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ControlLightLight;
+            this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(513, 548);
             this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.comboBox1);

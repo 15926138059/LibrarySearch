@@ -25,20 +25,21 @@ namespace LibrarySearch
             string bookname, author, pressdate, press;
             SqlConnection con = Util.SqlConnection();
             con.Open();
+            dataGridView1.Rows.Clear();
             a = textBox1.Text;
             b = comboBox1.SelectedIndex;
             using (SqlCommand cmd = con.CreateCommand())
             {
                 switch (b)
                 {
-                    case 0: cmd.CommandText = "select bookName,author,publishingDate,pressName from BookClassTable,press where BookClassTable.pressID=press.pressID and BookClassTable.bookName = @a_in;"; break; // 图书名
-                    case 1: cmd.CommandText = "select bookName,author,publishingDate,pressName from BookClassTable,press where BookClassTable.pressID=press.pressID and BookClassTable.author = @a_in;"; break; //作者名
-                    case 2: cmd.CommandText = "select bookName,author,publishingDate,pressName from BookClassTable,press where BookClassTable.pressID=press.pressID and BookClassTable.ISBN = @a_in;"; break; //ISBN
-                    case 3: cmd.CommandText = "select bookName,author,publishingDate,pressName from BookClassTable,press,book_subjectsTable,subjectsTable where BookClassTable.pressID=press.pressID and BookClassTable.ISBN=book_subjectssTable.ISBN and book_subjectsTable.subjectID=subjectsTable.subjectID and subjectsTable.subjectWord = @a_in;"; break; //主题词
-                    case 4: cmd.CommandText = "select bookName,author,publishingDate,pressName from BookClassTable,press where BookClassTable.pressID=press.pressID and press.pressName = @a_in;"; break; //出版社
-                    case 5: cmd.CommandText = "select bookName,author,publishingDate,pressName from BookClassTable,press,bookTable where BookClassTable.pressID=press.pressID and BookClassTable.ISBN=bookTable.ISBN and bookTable.bookID = @a_in;"; break; //索书号
+                    case 0: cmd.CommandText = "select bookName,author,publishingDate,pressName from BookNameSearchView where bookName like @a_in;"; break; // 图书名
+                    case 1: cmd.CommandText = "select bookName,author,publishingDate,pressName from BookNameSearchView where author like @a_in;"; break; //作者名
+                    case 2: cmd.CommandText = "select bookName,author,publishingDate,pressName from BookNameSearchView where ISBN like @a_in;"; break; //ISBN
+                    case 3: cmd.CommandText = "select bookName,author,publishingDate,pressName from BookSubjectsView where subjectWord like @a_in;"; break; //主题词
+                    case 4: cmd.CommandText = "select bookName,author,publishingDate,pressName from BookSubjectsView where pressName like @a_in;"; break; //出版社
+                    case 5: cmd.CommandText = "select bookName,author,publishingDate,pressName from BookIDView where bookID like @a_in;"; break; //索书号
                 }
-                cmd.Parameters.Add(new SqlParameter("a_in", a));
+                cmd.Parameters.Add(new SqlParameter("a_in", "%"+a+"%"));
                 SqlDataReader reader = cmd.ExecuteReader();
                 while(reader.Read())
                 {
@@ -57,6 +58,8 @@ namespace LibrarySearch
         private void Form1_Load(object sender, EventArgs e)
         {
             comboBox1.SelectedIndex = 0;
+            this.BackgroundImage = Image.FromFile(@"C:\Users\Admin\Desktop\images\body_bg.JPG");
+            this.dataGridView1.BackgroundColor = this.dataGridView1.Parent.BackColor;
         }
 
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
