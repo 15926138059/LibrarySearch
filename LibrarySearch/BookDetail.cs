@@ -16,19 +16,19 @@ namespace LibrarySearch
     public partial class BookDetail : Form
     {
         private BookSearchForm bookSearchForm;
-        private string ISBN= "";
-        public BookDetail(string ISBN)
+        private string ISBN = "";
+        public BookDetail()
         {
             InitializeComponent();
-            this.ISBN = ISBN;
         }
 
-        public BookDetail(string ISBN,BookSearchForm bookSearchForm)
+        public BookDetail(string ISBN, BookSearchForm bookSearchForm)
         {
             InitializeComponent();
             this.ISBN = ISBN;
             this.bookSearchForm = bookSearchForm;
         }
+
 
         //窗体加载时，以url形式加载图片
         private void BookDetail_Load(object sender, EventArgs e)
@@ -37,11 +37,8 @@ namespace LibrarySearch
             LoadPicture();//加载图书封面
             LoadBookClassInfo();//加载图书类信息
             LoadBookInfo();//加载图书信息
-
-
-
-
-
+            DouBan();
+            setSubjects();
         }
 
         //加载图书信息
@@ -50,18 +47,16 @@ namespace LibrarySearch
             string bookID = "";
             string bookLoc = "";
             string BookCount = "";
-            string pressYear = "";
+            string wordsCounts = "";
+            string pageCount = "";
+            string layOutSpecification = "";
 
-            string sql = "select bookTable.bookID,printDate,circulationFlag,libarayName " +
-                "from bookTable, bookKeep,location " +
-                "where bookTable.ISBN = @ISBNCode " +
-                "and bookTable.bookID = bookKeep.bookID " +
-                "and bookKeep.libraryID = location.libraryID";
+            string sql = "selBookInfo";
             SqlConnection con = Util.SqlConnection();
             con.Open();
             using (SqlCommand cmd = con.CreateCommand())
             {
-
+                cmd.CommandType = CommandType.StoredProcedure;
                 //定义查询语句,其中@username和@passwd是参数变量  
                 cmd.CommandText = sql;
                 //将name的数据赋值给查询语句中的ISBNCode  
@@ -72,10 +67,12 @@ namespace LibrarySearch
                 {
 
                     bookID = reader.GetString(0);
-                    pressYear = reader.GetDateTime(1).Year.ToString();
-                    BookCount = reader.GetBoolean(2)?"是":"否";
-                    bookLoc = reader.GetString(3);
-                    dG_book.Rows.Add(bookID, bookLoc, BookCount, pressYear);
+                    BookCount = reader.GetBoolean(1)?"是":"否";
+                    bookLoc = reader.GetString(2);
+                    wordsCounts = Convert.ToString(reader.GetInt64(3));
+                    pageCount = Convert.ToString(reader.GetInt64(4));
+                    layOutSpecification = reader.GetString(5);
+                    dG_book.Rows.Add(bookID, bookLoc, BookCount, wordsCounts,pageCount,layOutSpecification);
                 }
             }
             con.Close();
@@ -91,17 +88,14 @@ namespace LibrarySearch
             string cnCodeDescribe = "";//从数据库获取中图码描述
             string bookCount = "";
 
-            string sql = "select bookName,author,pressName,cnBookDescribe,collectionNumber " +
-                "from BookClassTable, press,cnBookClassifyTable " +
-                "where BookClassTable.ISBN = @ISBNCode" +
-                " and BookClassTable.pressID = press.pressID" +
-                " and BookClassTable.cnBookClass = cnBookClassifyTable.cnBookClass; ";
+            string sql = "selBookClass";
             SqlConnection con = Util.SqlConnection();
             con.Open();
             using (SqlCommand cmd = con.CreateCommand())
             {
 
-                //定义查询语句,其中@username和@passwd是参数变量  
+                cmd.CommandType = CommandType.StoredProcedure;
+                //定义查询语句
                 cmd.CommandText = sql;
                 //将name的数据赋值给查询语句中的ISBNCode  
                 cmd.Parameters.Add(new SqlParameter("ISBNCode", ISBN));
@@ -127,13 +121,12 @@ namespace LibrarySearch
             string path = "";//从数据库中获取图片相对路径
             string url = "";//完整图片url
             SqlParameter[] param = new SqlParameter[1];
-            param[0] = new SqlParameter("@userName", ISBN);
-            string sql = "select coverImage from coverTable where ISBN = @ISBNCode;";
+            string sql = "selPic";
             SqlConnection con = Util.SqlConnection();
             con.Open();
             using (SqlCommand cmd = con.CreateCommand())
             {
-
+                cmd.CommandType = CommandType.StoredProcedure;
                 //定义查询语句,其中@username和@passwd是参数变量  
                 cmd.CommandText = sql;
                 //将name的数据赋值给查询语句中的ISBNCode  
@@ -152,23 +145,63 @@ namespace LibrarySearch
             HttpWebRequest request = (HttpWebRequest)WebRequest.Create(url);
             using (WebResponse response = request.GetResponse())
             {
-                try
-                {
-                    Image img = Image.FromStream(response.GetResponseStream());
-                    pic_book.Image = img;
-                }
-               catch(Exception e )
-                {
-                    e.ToString();
-                    pic_book.Image = null;
-                }
+                Image img = Image.FromStream(response.GetResponseStream());
+                pic_book.Image = img;
+            }
+        }   
+
+        //豆瓣信息
+        public void DouBan()
+        {
+            BookComments comments = new BookComments();
+            string json = "";
+
+            if (Util.getInfo(ISBN, out comments, out json))
+            {
+                lab_douban.Text = comments.starts + "星";
+                lab_com.Text = lab_com.Text + "\n\n    " + comments.comment[0];
             }
         }
 
-        private void BookDetail_FormClosing(object sender, FormClosingEventArgs e)
+        private void tb_in_TextChanged(object sender, EventArgs e)
         {
-            this.bookSearchForm.Show();
+            //string word = tb_in.Text;
+            //string[] array = Util.knowledegGraph(word);
+            //this.tb_in.AutoCompleteCustomSource.AddRange(array);
+        }
+
+        //显示主题词
+        public void setSubjects()
+        {
+            string booksubJects = "";
             
+
+            string sql = "selSubjects ";
+            SqlConnection con = Util.SqlConnection();
+            con.Open();
+            using (SqlCommand cmd = con.CreateCommand())
+            {
+                cmd.CommandType = CommandType.StoredProcedure;
+                //定义查询语句
+                cmd.CommandText = sql;
+                //将name的数据赋值给查询语句中的ISBNCode  
+                cmd.Parameters.Add(new SqlParameter("ISBNCode", ISBN));
+                SqlDataReader reader = cmd.ExecuteReader();
+
+                while (reader.Read())
+                {
+
+                    booksubJects = booksubJects+reader.GetString(0)+" ";
+                }
+            }
+            con.Close();
+            lab_sj.Text = booksubJects;
+        }
+
+        private void pic_book_Click(object sender, EventArgs e)
+        {
+            BookContentForm form = new BookContentForm(ISBN);
+            form.Show();
         }
     }
 }

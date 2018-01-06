@@ -23,23 +23,7 @@ namespace LibrarySearch
         }
 
 
-        //点击事件
         private void btn_signin_Click(object sender, EventArgs e)
-        {
-            //登录
-            signInFunction();
-        }
-
-        private void btn_signup_Click(object sender, EventArgs e)
-        {
-            
-            SignUp signUpForm = new SignUp(this);
-            signUpForm.Show();
-            this.Hide();
-        }
-
-        //登录函数
-        private void signInFunction()
         {
             SqlConnection con = Util.SqlConnection();
             con.Open();
@@ -52,27 +36,18 @@ namespace LibrarySearch
             com.Parameters.Add(new SqlParameter("uid", tB_username.Text.Trim()));
             SqlDataReader reader = com.ExecuteReader();
             reader.Read();
-            try
+            if(pwd==reader.GetString(1))
             {
-                if (pwd == reader["userpasword"].ToString())
-                {
-                    judge = true;
-                }
+                judge = true;
             }
-            catch(Exception e)
-            {
-                e.ToString();
-                MessageBox.Show("登录失败");
-                return;
-            }
-            
             reader.Close();
             con.Close();
             if (judge == true)
             {
-                BookSearchForm bookSearchForm = new BookSearchForm(this);
-                bookSearchForm.Show();
+                //MessageBox.Show("欢迎！");
+                BookSearchForm form = new BookSearchForm(this);
                 this.Hide();
+                form.Show();
             }
             else
             {
@@ -83,5 +58,12 @@ namespace LibrarySearch
             }
         }
 
+        private void btn_signup_Click(object sender, EventArgs e)
+        {
+            
+            SignUp form = new SignUp();
+            form.Show();
+            this.Hide();
+        }
     }
 }

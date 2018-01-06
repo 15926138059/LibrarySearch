@@ -28,9 +28,14 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(BookDetail));
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.pic_book = new CCWin.SkinControl.SkinPictureBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.lab_sj = new System.Windows.Forms.Label();
+            this.label6 = new System.Windows.Forms.Label();
+            this.panel2 = new System.Windows.Forms.Panel();
+            this.lab_com = new System.Windows.Forms.Label();
             this.lab_count = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.lab_cnType = new System.Windows.Forms.Label();
@@ -48,24 +53,31 @@
             this.bookID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.bookLoaction = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.bookFlag = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.pressDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.wordsCount = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.pageCounts = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.layOut = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.panel3 = new System.Windows.Forms.Panel();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.tableLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pic_book)).BeginInit();
             this.groupBox1.SuspendLayout();
+            this.panel2.SuspendLayout();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dG_book)).BeginInit();
+            this.panel3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // tableLayoutPanel1
             // 
+            this.tableLayoutPanel1.BackColor = System.Drawing.Color.Transparent;
             this.tableLayoutPanel1.ColumnCount = 2;
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.41837F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 66.58163F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 26.91327F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 73.08673F));
             this.tableLayoutPanel1.Controls.Add(this.pic_book, 0, 0);
             this.tableLayoutPanel1.Controls.Add(this.groupBox1, 1, 0);
             this.tableLayoutPanel1.Controls.Add(this.panel1, 0, 1);
-            this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
+            this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 94);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 2;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 43.67202F));
@@ -81,16 +93,20 @@
             this.pic_book.BackColor = System.Drawing.Color.Transparent;
             this.pic_book.Location = new System.Drawing.Point(3, 3);
             this.pic_book.Name = "pic_book";
-            this.pic_book.Size = new System.Drawing.Size(256, 239);
+            this.pic_book.Size = new System.Drawing.Size(205, 239);
             this.pic_book.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pic_book.TabIndex = 0;
             this.pic_book.TabStop = false;
+            this.pic_book.Click += new System.EventHandler(this.pic_book_Click);
             // 
             // groupBox1
             // 
             this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBox1.Controls.Add(this.lab_sj);
+            this.groupBox1.Controls.Add(this.label6);
+            this.groupBox1.Controls.Add(this.panel2);
             this.groupBox1.Controls.Add(this.lab_count);
             this.groupBox1.Controls.Add(this.label3);
             this.groupBox1.Controls.Add(this.lab_cnType);
@@ -103,16 +119,51 @@
             this.groupBox1.Controls.Add(this.label4);
             this.groupBox1.Controls.Add(this.label2);
             this.groupBox1.Controls.Add(this.label1);
-            this.groupBox1.Location = new System.Drawing.Point(265, 3);
+            this.groupBox1.Location = new System.Drawing.Point(214, 3);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(516, 239);
+            this.groupBox1.Size = new System.Drawing.Size(567, 239);
             this.groupBox1.TabIndex = 1;
             this.groupBox1.TabStop = false;
+            // 
+            // lab_sj
+            // 
+            this.lab_sj.AutoSize = true;
+            this.lab_sj.Location = new System.Drawing.Point(147, 214);
+            this.lab_sj.Name = "lab_sj";
+            this.lab_sj.Size = new System.Drawing.Size(41, 12);
+            this.lab_sj.TabIndex = 18;
+            this.lab_sj.Text = "主题词";
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Font = new System.Drawing.Font("宋体", 15F);
+            this.label6.Location = new System.Drawing.Point(21, 207);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(69, 20);
+            this.label6.TabIndex = 17;
+            this.label6.Text = "主题词";
+            // 
+            // panel2
+            // 
+            this.panel2.Controls.Add(this.lab_com);
+            this.panel2.Location = new System.Drawing.Point(335, 73);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(184, 100);
+            this.panel2.TabIndex = 15;
+            // 
+            // lab_com
+            // 
+            this.lab_com.Location = new System.Drawing.Point(3, 0);
+            this.lab_com.Name = "lab_com";
+            this.lab_com.Size = new System.Drawing.Size(178, 100);
+            this.lab_com.TabIndex = 14;
+            this.lab_com.Text = "评论";
             // 
             // lab_count
             // 
             this.lab_count.AutoSize = true;
-            this.lab_count.Location = new System.Drawing.Point(147, 151);
+            this.lab_count.Location = new System.Drawing.Point(147, 137);
             this.lab_count.Name = "lab_count";
             this.lab_count.Size = new System.Drawing.Size(41, 12);
             this.lab_count.TabIndex = 13;
@@ -122,7 +173,7 @@
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("宋体", 15F);
-            this.label3.Location = new System.Drawing.Point(21, 143);
+            this.label3.Location = new System.Drawing.Point(21, 130);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(69, 20);
             this.label3.TabIndex = 12;
@@ -131,7 +182,7 @@
             // lab_cnType
             // 
             this.lab_cnType.AutoSize = true;
-            this.lab_cnType.Location = new System.Drawing.Point(147, 121);
+            this.lab_cnType.Location = new System.Drawing.Point(147, 107);
             this.lab_cnType.Name = "lab_cnType";
             this.lab_cnType.Size = new System.Drawing.Size(29, 12);
             this.lab_cnType.TabIndex = 11;
@@ -141,7 +192,7 @@
             // 
             this.label8.AutoSize = true;
             this.label8.Font = new System.Drawing.Font("宋体", 15F);
-            this.label8.Location = new System.Drawing.Point(21, 114);
+            this.label8.Location = new System.Drawing.Point(21, 99);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(49, 20);
             this.label8.TabIndex = 10;
@@ -150,7 +201,7 @@
             // lab_douban
             // 
             this.lab_douban.AutoSize = true;
-            this.lab_douban.Location = new System.Drawing.Point(147, 216);
+            this.lab_douban.Location = new System.Drawing.Point(454, 38);
             this.lab_douban.Name = "lab_douban";
             this.lab_douban.Size = new System.Drawing.Size(53, 12);
             this.lab_douban.TabIndex = 9;
@@ -187,7 +238,7 @@
             // 
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("宋体", 15F);
-            this.label5.Location = new System.Drawing.Point(21, 178);
+            this.label5.Location = new System.Drawing.Point(21, 170);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(69, 20);
             this.label5.TabIndex = 4;
@@ -197,7 +248,7 @@
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("宋体", 15F);
-            this.label4.Location = new System.Drawing.Point(21, 216);
+            this.label4.Location = new System.Drawing.Point(331, 37);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(89, 20);
             this.label4.TabIndex = 3;
@@ -237,11 +288,14 @@
             this.dG_book.AllowUserToAddRows = false;
             this.dG_book.AllowUserToDeleteRows = false;
             this.dG_book.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dG_book.BackgroundColor = System.Drawing.SystemColors.ActiveCaption;
             this.dG_book.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.bookID,
             this.bookLoaction,
             this.bookFlag,
-            this.pressDate});
+            this.wordsCount,
+            this.pageCounts,
+            this.layOut});
             this.dG_book.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dG_book.Location = new System.Drawing.Point(0, 0);
             this.dG_book.Name = "dG_book";
@@ -268,28 +322,70 @@
             this.bookFlag.Name = "bookFlag";
             this.bookFlag.ReadOnly = true;
             // 
-            // pressDate
+            // wordsCount
             // 
-            this.pressDate.HeaderText = "出版年份";
-            this.pressDate.Name = "pressDate";
-            this.pressDate.ReadOnly = true;
+            this.wordsCount.HeaderText = "字数";
+            this.wordsCount.Name = "wordsCount";
+            this.wordsCount.ReadOnly = true;
+            // 
+            // pageCounts
+            // 
+            this.pageCounts.HeaderText = "页数";
+            this.pageCounts.Name = "pageCounts";
+            this.pageCounts.ReadOnly = true;
+            // 
+            // layOut
+            // 
+            this.layOut.HeaderText = "开本";
+            this.layOut.Name = "layOut";
+            this.layOut.ReadOnly = true;
+            // 
+            // panel3
+            // 
+            this.panel3.Controls.Add(this.pictureBox1);
+            this.panel3.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel3.Location = new System.Drawing.Point(0, 0);
+            this.panel3.Margin = new System.Windows.Forms.Padding(0);
+            this.panel3.Name = "panel3";
+            this.panel3.Size = new System.Drawing.Size(784, 100);
+            this.panel3.TabIndex = 1;
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.pictureBox1.Image = global::LibrarySearch.Properties.Resources.head;
+            this.pictureBox1.Location = new System.Drawing.Point(0, 0);
+            this.pictureBox1.Margin = new System.Windows.Forms.Padding(0);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(1346, 100);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox1.TabIndex = 0;
+            this.pictureBox1.TabStop = false;
             // 
             // BookDetail
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(784, 561);
+            this.BackgroundImage = global::LibrarySearch.Properties.Resources.body_bg;
+            this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.ClientSize = new System.Drawing.Size(784, 527);
+            this.Controls.Add(this.panel3);
             this.Controls.Add(this.tableLayoutPanel1);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "BookDetail";
-            this.Text = "BookDetail";
-            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.BookDetail_FormClosing);
+            this.Text = "图书详细信息";
             this.Load += new System.EventHandler(this.BookDetail_Load);
             this.tableLayoutPanel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pic_book)).EndInit();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
+            this.panel2.ResumeLayout(false);
             this.panel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dG_book)).EndInit();
+            this.panel3.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -313,9 +409,17 @@
         private System.Windows.Forms.DataGridView dG_book;
         private System.Windows.Forms.Label lab_count;
         private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label lab_com;
+        private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.DataGridViewTextBoxColumn bookID;
         private System.Windows.Forms.DataGridViewTextBoxColumn bookLoaction;
         private System.Windows.Forms.DataGridViewTextBoxColumn bookFlag;
-        private System.Windows.Forms.DataGridViewTextBoxColumn pressDate;
+        private System.Windows.Forms.DataGridViewTextBoxColumn wordsCount;
+        private System.Windows.Forms.DataGridViewTextBoxColumn pageCounts;
+        private System.Windows.Forms.DataGridViewTextBoxColumn layOut;
+        private System.Windows.Forms.Label lab_sj;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Panel panel3;
+        private System.Windows.Forms.PictureBox pictureBox1;
     }
 }
